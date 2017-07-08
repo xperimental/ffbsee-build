@@ -66,4 +66,9 @@ pipeline {
       }
     }
   }
+  post {
+    failure {
+      deleteDir()
+    }
+  }
 }
