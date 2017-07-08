@@ -11,9 +11,9 @@ node ("make") {
 
     stage('patches') {
         sh "cp -rf firmware/files firmware/package ."
-        sh "git am --whitespace=nowarn firmware/patches/lede/*.patch"
+        sh "for file in firmware/patches/lede/*.patch; do patch -p1 < $file; done"
         dir('feeds/routing') {
-            sh "git am --whitespace=nowarn ../../firmware/patches/routing/*.patch"
+            sh "for file in ../../firmware/patches/routing/*.patch; do patch -p1 < $file; done"
         }
     }
 
