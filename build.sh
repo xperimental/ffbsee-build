@@ -31,4 +31,5 @@ for platform in $platforms; do
     # Build image
     make defconfig
     make -j4
+    exit 1
 done
