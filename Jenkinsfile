@@ -1,13 +1,7 @@
 pipeline {
   agent any
   stages {
-    stage('checkout tools') {
-      steps {
-        checkout scm
-      }
-    }
-
-    stage('checkout') {
+    stage('Checkout sources') {
       steps {
         checkout([
           $class: 'GitSCM',
@@ -36,7 +30,7 @@ pipeline {
       }
     }
 
-    stage('feeds') {
+    stage('Update feeds') {
       steps {
         dir("source") {
           sh "./scripts/feeds update -a"
@@ -46,7 +40,7 @@ pipeline {
     }
 
 
-    stage('patches') {
+    stage('Apply patches') {
       steps {
         dir("source") {
           sh "cp -rf firmware/files firmware/package ."
@@ -58,7 +52,7 @@ pipeline {
       }
     }
 
-    stage('build') {
+    stage('Build images') {
       steps {
         dir("source") {
           sh "../build.sh"
