@@ -1,6 +1,18 @@
 pipeline {
   agent any
   stages {
+    stage('Cleanup') {
+      steps {
+        deleteDir()
+      }
+    }
+
+    stage('Checkout build') {
+      steps {
+        checkout scm
+      }
+    }
+
     stage('Checkout sources') {
       steps {
         checkout([
@@ -38,7 +50,6 @@ pipeline {
         }
       }
     }
-
 
     stage('Apply patches') {
       steps {
