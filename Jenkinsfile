@@ -60,9 +60,4 @@ pipeline {
       }
     }
   }
-  post {
-    failure {
-      deleteDir()
-    }
-  }
 }
