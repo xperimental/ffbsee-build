@@ -20,7 +20,7 @@ pipeline {
       steps {
         checkout([
           $class: 'GitSCM',
-          branches: [[name: 'v17.01.2']],
+          branches: [[name: 'v17.01.1']],
           doGenerateSubmoduleConfigurations: false,
           extensions: [
             [$class: 'RelativeTargetDirectory', relativeTargetDir: 'source']
