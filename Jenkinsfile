@@ -1,4 +1,8 @@
 node ("make") {
+    stage('checkout tools') {
+        checkout scm
+    }
+
     stage('checkout') {
         checkout([
             $class: 'GitSCM',
